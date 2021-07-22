@@ -1,10 +1,10 @@
 # fabric-go-sdk
 
-`GOPATH`设置为`root/go`
+`GOPATH`设置为`/root/go`
 进入`GOPATH/src`拉取项目
 
 ```
-cd GOPATH/src && git clone https://github.com/sxguan/fabric-go-sdk.git
+cd $GOPATH/src && git clone https://github.com/sxguan/fabric-go-sdk.git
 ```
 
 启动节点
