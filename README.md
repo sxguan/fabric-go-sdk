@@ -1,4 +1,5 @@
-#fabric-go-sdk
+# fabric-go-sdk
+
 `GOPATH`设置为`root/go`
 进入`GOPATH/src`拉取项目
 
