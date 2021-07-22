@@ -1,14 +1,9 @@
 package main
 
 import (
-
-
 	"fmt"
 	"fabric-go-sdk/sdkInit"
-
-
 	"os"
-
 )
 
 const (
@@ -27,20 +22,20 @@ func main() {
 			OrgMspId:      "Org1MSP",
 			OrgUser:       "User1",
 			OrgPeerNum:    2,
-			OrgAnchorFile: os.Getenv("GOPATH") + "/src/fabric-go-sdk/fixtures/channel-artifacts/Org1MSPanchors.tx",
+			OrgAnchorFile: "/root/go/src/fabric-go-sdk/fixtures/channel-artifacts/Org1MSPanchors.tx",
 		},
 	}
 
 	// init sdk env info
 	info := sdkInit.SdkEnvInfo{
 		ChannelID:        "mychannel",
-		ChannelConfig:    os.Getenv("GOPATH") + "/src/fabric-go-sdk/fixtures/channel-artifacts/channel.tx",
+		ChannelConfig:    "/root/go/src/fabric-go-sdk/fixtures/channel-artifacts/channel.tx",
 		Orgs:             orgs,
 		OrdererAdminUser: "Admin",
 		OrdererOrgName:   "OrdererOrg",
 		OrdererEndpoint:  "orderer.example.com",
 		ChaincodeID:      cc_name,
-		ChaincodePath:    os.Getenv("GOPATH") + "/src/fabric-go-sdk/chaincode/",
+		ChaincodePath:    "/root/go/src/fabric-go-sdk/chaincode/",
 		ChaincodeVersion: cc_version,
 	}
 
