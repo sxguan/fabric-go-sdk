@@ -1,20 +1,21 @@
 # fabric-go-sdk
 本项目基于hyperledger fabric 2.x网络
 ## 基本流程
+### 拉取项目
 `GOPATH`设置为`/root/go`
-进入`GOPATH/src`拉取项目
+进入`GOPATH/src`
 
 ```
 cd $GOPATH/src && git clone https://github.com/sxguan/fabric-go-sdk.git
 ```
 
-启动节点
+### 启动节点
 
 ```
 cd /fabric-go-sdk/fixtures/ && docker-compose up -d
 ```
 
-启动项目
+### 启动项目
 
 ```
 cd .. && go build && ./fabric-go-sdk
