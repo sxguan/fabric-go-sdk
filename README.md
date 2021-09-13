@@ -12,7 +12,7 @@ cd $GOPATH/src && git clone https://github.com/sxguan/fabric-go-sdk.git
 ### 启动节点
 
 ```
-cd /fabric-go-sdk/fixtures/ && docker-compose up -d
+cd ./fabric-go-sdk/fixtures/ && docker-compose up -d
 ```
 
 ### 启动项目
