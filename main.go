@@ -1,17 +1,19 @@
 package main
 
 import (
-	"fmt"
 	"fabric-go-sdk/sdkInit"
+	"fmt"
 	"os"
+	"time"
 )
 
 const (
-	cc_name = "simplecc"
+	cc_name    = "simplecc"
 	cc_version = "1.0.0"
 )
 
 var App sdkInit.Application
+
 func main() {
 	// init orgs information
 
@@ -61,30 +63,48 @@ func main() {
 	// invoke chaincode set status
 	fmt.Println(">> 通过链码外部服务设置链码状态......")
 
-	if err := info.InitService(info.ChaincodeID, info.ChannelID, info.Orgs[0], sdk);err != nil{
+	if err := info.InitService(info.ChaincodeID, info.ChannelID, info.Orgs[0], sdk); err != nil {
 
 		fmt.Println("InitService successful")
 		os.Exit(-1)
 	}
 
-	App=sdkInit.Application{
+	App = sdkInit.Application{
 		SdkEnvInfo: &info,
 	}
 	fmt.Println(">> 设置链码状态完成")
 
-	a:=[]string{"set","ID","123"}
+	defer info.EvClient.Unregister(sdkInit.BlockListener(info.EvClient))
+	defer info.EvClient.Unregister(sdkInit.ChainCodeEventListener(info.EvClient, info.ChaincodeID))
+
+	a := []string{"set", "ID1", "123"}
 	ret, err := App.Set(a)
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println("<--- 添加信息　--->：", ret)
 
+	a = []string{"set", "ID2", "456"}
+	ret, err = App.Set(a)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("<--- 添加信息　--->：", ret)
 
-	b := []string{"get","ID"}
-	response, err := App.Get(b)
+	a = []string{"set", "ID3", "789"}
+	ret, err = App.Set(a)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("<--- 添加信息　--->：", ret)
+
+	a = []string{"get", "ID3"}
+	response, err := App.Get(a)
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println("<--- 查询信息　--->：", response)
+
+	time.Sleep(time.Second * 10)
 
 }
