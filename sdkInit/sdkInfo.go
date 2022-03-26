@@ -2,6 +2,7 @@ package sdkInit
 
 import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel"
+	"github.com/hyperledger/fabric-sdk-go/pkg/client/event"
 	mspclient "github.com/hyperledger/fabric-sdk-go/pkg/client/msp"
 	"github.com/hyperledger/fabric-sdk-go/pkg/client/resmgmt"
 	contextAPI "github.com/hyperledger/fabric-sdk-go/pkg/common/providers/context"
@@ -37,12 +38,10 @@ type SdkEnvInfo struct {
 	ChaincodeGoPath  string
 	ChaincodePath    string
 	ChaincodeVersion string
-	Client	*channel.Client
+	ChClient         *channel.Client
+	EvClient         *event.Client
 }
-
 
 type Application struct {
-
 	SdkEnvInfo *SdkEnvInfo
 }
-
