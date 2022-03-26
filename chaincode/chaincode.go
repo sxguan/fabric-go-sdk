@@ -1,14 +1,18 @@
 package main
 
 import (
-"fmt"
+	"encoding/json"
+	"fmt"
 
-"github.com/hyperledger/fabric-chaincode-go/shim"
-"github.com/hyperledger/fabric-protos-go/peer"
+	"github.com/hyperledger/fabric-chaincode-go/shim"
+	"github.com/hyperledger/fabric-protos-go/peer"
 )
 
 // SimpleAsset implements a simple chaincode to manage an asset
 type SimpleAsset struct {
+}
+type outputEvent struct {
+	EventName string
 }
 
 // Init is called during chaincode instantiation to initialize any
@@ -52,6 +56,14 @@ func set(stub shim.ChaincodeStubInterface, args []string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("Failed to set asset: %s", args[0])
 	}
+	event := outputEvent{
+		EventName: "set",
+	}
+	payload, err := json.Marshal(event)
+	if err != nil {
+		return "", err
+	}
+	err = stub.SetEvent("chaincode-event", payload)
 	return args[1], nil
 }
 
