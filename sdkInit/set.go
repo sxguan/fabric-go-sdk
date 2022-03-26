@@ -1,4 +1,5 @@
 package sdkInit
+
 import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel"
 )
@@ -10,7 +11,7 @@ func (t *Application) Set(args []string) (string, error) {
 	}
 
 	request := channel.Request{ChaincodeID: t.SdkEnvInfo.ChaincodeID, Fcn: args[0], Args: [][]byte{[]byte(args[1]), []byte(args[2])}}
-	response, err := t.SdkEnvInfo.Client.Execute(request)
+	response, err := t.SdkEnvInfo.ChClient.Execute(request)
 	if err != nil {
 		// 资产转移失败
 		return "", err
